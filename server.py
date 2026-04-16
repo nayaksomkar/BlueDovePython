@@ -26,7 +26,7 @@ DB_SAMPLE: Path = DATA_DIR / "sample_usage.db"
 
 class BlueDoveServer:
     def __init__(self):
-        self.current_db: Path = DB_SAMPLE
+        self.current_db: Path = DB_MAIN
 
     def use_db(self, db_name: str) -> None:
         self.current_db = DB_SAMPLE if db_name == "sample" else DB_MAIN

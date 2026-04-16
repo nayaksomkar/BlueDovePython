@@ -3,67 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Blue Dove</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif; background: #f5f5f7; color: #1d1d1f; }
-        
-        header { background: #fff; padding: 25px 40px; border-bottom: 1px solid #e5e5e5; }
-        header h1 { font-size: 1.8rem; font-weight: 600; background: linear-gradient(90deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        header p { color: #86868b; font-size: 0.9rem; margin-top: 5px; }
-        
-        .controls { background: #fff; padding: 15px 40px; display: flex; gap: 15px; align-items: center; border-bottom: 1px solid #e5e5e5; }
-        select { padding: 8px 16px; border: 1px solid #d2d2d7; border-radius: 8px; font-size: 14px; background: #fff; color: #1d1d1f; }
-        select:focus { outline: none; border-color: #667eea; }
-        
-        .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 30px 40px; }
-        .stat { background: #fff; border-radius: 16px; padding: 25px; text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
-        .stat h3 { color: #86868b; font-size: 0.85rem; font-weight: 500; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
-        .stat .value { font-size: 2rem; font-weight: 600; color: #1d1d1f; }
-        .stat.featured { background: linear-gradient(135deg, #667eea, #764ba2); }
-        .stat.featured h3, .stat.featured .value { color: #fff; }
-        
-        .charts { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 0 40px 30px; }
-        .card { background: #fff; border-radius: 16px; padding: 25px; box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
-        .card h2 { font-size: 1rem; font-weight: 500; color: #1d1d1f; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid #f5f5f7; }
-        .card canvas { max-height: 250px; }
-        
-        .bars { display: flex; flex-direction: column; gap: 12px; }
-        .bar-item { display: flex; align-items: center; gap: 15px; }
-        .bar-label { width: 90px; font-size: 13px; color: #515154; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .bar-track { flex: 1; height: 28px; background: #f5f5f7; border-radius: 14px; overflow: hidden; }
-        .bar-fill { height: 100%; border-radius: 14px; transition: width 0.8s cubic-bezier(0.22, 1, 0.36, 1); }
-        .bar-value { width: 50px; text-align: right; font-size: 13px; color: #86868b; }
-        
-        .table-wrap { max-height: 300px; overflow-y: auto; }
-        .table-wrap::-webkit-scrollbar { width: 6px; }
-        .table-wrap::-webkit-scrollbar-thumb { background: #d1d1d6; border-radius: 3px; }
-        table { width: 100%; border-collapse: collapse; }
-        th { text-align: left; padding: 12px 10px; color: #86868b; font-size: 0.8rem; font-weight: 500; text-transform: uppercase; border-bottom: 1px solid #f5f5f7; position: sticky; top: 0; background: #fff; }
-        td { padding: 14px 10px; border-bottom: 1px solid #f5f5f7; font-size: 14px; }
-        tr:hover td { background: #fafafa; }
-        
-        .activity { background: #fff; border-radius: 16px; padding: 25px; margin: 0 40px 30px; box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
-        .activity h2 { font-size: 1rem; font-weight: 500; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid #f5f5f7; }
-        .activity-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
-        .activity-item { background: #f5f5f7; border-radius: 12px; padding: 15px; transition: all 0.3s; cursor: pointer; }
-        .activity-item:hover { background: #e8e8ed; transform: translateY(-2px); }
-        .activity-item .app { font-weight: 500; color: #1d1d1f; margin-bottom: 5px; }
-        .activity-item .time { font-size: 0.85rem; color: #86868b; }
-        .activity-item .dur { font-size: 0.9rem; color: #667eea; font-weight: 600; margin-top: 5px; }
-        
-        .donut-center { position: relative; }
-        .donut-center canvas { display: block; margin: 0 auto; }
-        .donut-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; }
-        .donut-text .num { font-size: 2rem; font-weight: 600; color: #1d1d1f; }
-        .donut-text .label { font-size: 0.8rem; color: #86868b; }
-        
-        footer { text-align: center; padding: 20px; color: #86868b; font-size: 0.8rem; }
-        
-        @media (max-width: 768px) {
-            .stats, .charts { grid-template-columns: 1fr; padding: 20px; }
-            header, .controls { padding: 15px 20px; }
-        }
-    </style>
+    <link rel="stylesheet" href="dashboard.css">
 </head>
 <body>
     <header>
@@ -72,8 +12,16 @@
     </header>
     
     <div class="controls">
-        <select id="db"><option value="sample">Sample Data</option><option value="main">Usage Data</option></select>
+        <select id="db"><option value="main">Usage Data</option><option value="sample">Sample Data</option></select>
         <select id="date"><option>Loading...</option></select>
+    </div>
+    
+    <div class="tabs">
+        <button class="tab active" data-view="trends">Last 7 Days</button>
+        <button class="tab" data-view="pie">Pie</button>
+        <button class="tab" data-view="bar">Bar</button>
+        <button class="tab" data-view="doughnut">Doughnut</button>
+        <button class="tab" data-view="table">Table</button>
     </div>
     
     <div class="stats">
@@ -82,32 +30,64 @@
         <div class="stat featured"><h3>Top App</h3><div class="value" id="top">-</div></div>
     </div>
     
-    <div class="charts">
-        <div class="card">
-            <h2>Pie Chart</h2>
-            <div class="donut-center">
-                <canvas id="pieChart"></canvas>
-                <div class="donut-text"><div class="num" id="pieNum">-</div><div class="label">Hours</div></div>
+    <div class="view-container">
+        <div id="view-trends" class="view active">
+            <div class="trends-container">
+                <div class="card">
+                    <h2>Last 7 Days</h2>
+                    <canvas id="trendsChart"></canvas>
+                </div>
+                <div class="card">
+                    <h2>Daily Breakdown</h2>
+                    <canvas id="stackedChart"></canvas>
+                </div>
             </div>
         </div>
-        <div class="card">
-            <h2>Bar Graph</h2>
-            <canvas id="barChart"></canvas>
+        
+        <div id="view-pie" class="view">
+            <div class="full-chart">
+                <div class="card">
+                    <h2>Pie Chart</h2>
+                    <div class="donut-center">
+                        <canvas id="chartPie"></canvas>
+                        <div class="donut-text"><div class="num" id="chartNumPie">-</div><div class="label">Hours</div></div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-    
-    <div class="charts">
-        <div class="card">
-            <h2>Horizontal Bars</h2>
-            <div class="bars" id="hBars"></div>
+        
+        <div id="view-bar" class="view">
+            <div class="full-chart">
+                <div class="card">
+                    <h2>Bar Graph</h2>
+                    <canvas id="chartBar"></canvas>
+                </div>
+            </div>
         </div>
-        <div class="card">
-            <h2>Usage Table</h2>
-            <div class="table-wrap">
-                <table>
-                    <thead><tr><th>App</th><th>Time</th><th>%</th></tr></thead>
-                    <tbody id="table"></tbody>
-                </table>
+        
+        <div id="view-doughnut" class="view">
+            <div class="full-chart">
+                <div class="card">
+                    <h2>Doughnut Chart</h2>
+                    <div class="donut-center">
+                        <canvas id="chartDoughnut"></canvas>
+                        <div class="donut-text"><div class="num" id="chartNumDoughnut">-</div><div class="label">Hours</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="view-table" class="view">
+            <div class="full-table">
+                <div class="card">
+                    <h2>Usage Breakdown</h2>
+                    <div class="table-wrap">
+                        <table>
+                            <thead><tr><th>App</th><th>Time</th><th>%</th><th>Hours</th></tr></thead>
+                            <tbody id="tableFull"></tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -120,150 +100,6 @@
     <footer>Blue Dove v2.0</footer>
     
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        var pieChart = null, barChart = null, cur = '';
-        var colors = ['#667eea', '#e74c3c', '#2ecc71', '#f39c12', '#9b59b6', '#1abc9c', '#e67e22', '#34495e'];
-        
-        function fmt(s) {
-            var h = Math.floor(s / 3600);
-            var m = Math.floor((s % 3600) / 60);
-            return h + 'h ' + m + 'm';
-        }
-        
-        function load(d) {
-            var x = new XMLHttpRequest();
-            x.open('GET', '/api/data/' + d);
-            x.onload = function() {
-                var r = JSON.parse(this.responseText);
-                var s = r.summary || [];
-                var t = r.records || [];
-                var tot = 0;
-                for (var i = 0; i < s.length; i++) tot += s[i].seconds || 0;
-                
-                document.getElementById('total').textContent = fmt(tot);
-                document.getElementById('apps').textContent = s.length;
-                document.getElementById('top').textContent = s[0] ? s[0].app.substring(0, 15) : '-';
-                document.getElementById('pieNum').textContent = (tot / 3600).toFixed(1);
-                
-                // Pie Chart
-                var ctx1 = document.getElementById('pieChart').getContext('2d');
-                if (pieChart) pieChart.destroy();
-                pieChart = new Chart(ctx1, {
-                    type: 'pie',
-                    data: {
-                        labels: s.slice(0, 6).map(x => x.app),
-                        datasets: [{
-                            data: s.slice(0, 6).map(x => x.seconds),
-                            backgroundColor: colors,
-                            borderWidth: 3,
-                            borderColor: '#fff',
-                            hoverOffset: 15
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        plugins: { legend: { position: 'bottom', labels: { padding: 20, usePointStyle: true } } },
-                        animation: { animateRotate: true, duration: 1000 }
-                    }
-                });
-                
-                // Bar Chart
-                var ctx2 = document.getElementById('barChart').getContext('2d');
-                if (barChart) barChart.destroy();
-                barChart = new Chart(ctx2, {
-                    type: 'bar',
-                    data: {
-                        labels: s.slice(0, 6).map(x => x.app.substring(0, 10)),
-                        datasets: [{
-                            data: s.slice(0, 6).map(x => (x.seconds / 3600).toFixed(2)),
-                            backgroundColor: colors.slice(0, 6),
-                            borderRadius: 8,
-                            borderSkipped: false
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        indexAxis: 'y',
-                        plugins: { legend: { display: false } },
-                        scales: { x: { grid: { display: false } }, y: { grid: { display: false } } },
-                        animation: { duration: 1000, delay: function(ctx) { return ctx.dataIndex * 100; } }
-                    }
-                });
-                
-                // Horizontal Bars
-                var barsHtml = '';
-                for (var i = 0; i < Math.min(s.length, 8); i++) {
-                    var pct = tot > 0 ? ((s[i].seconds / tot) * 100).toFixed(0) : 0;
-                    barsHtml += '<div class="bar-item">' +
-                        '<div class="bar-label">' + s[i].app.substring(0, 12) + '</div>' +
-                        '<div class="bar-track"><div class="bar-fill" style="width:' + pct + '%;background:' + colors[i % colors.length] + '"></div></div>' +
-                        '<div class="bar-value">' + pct + '%</div></div>';
-                }
-                document.getElementById('hBars').innerHTML = barsHtml;
-                
-                // Table
-                var tb = '';
-                for (var i = 0; i < s.length; i++) {
-                    var sec = s[i].seconds || 0;
-                    var pct = tot > 0 ? ((sec / tot) * 100).toFixed(1) : 0;
-                    tb += '<tr><td>' + s[i].app + '</td><td>' + fmt(sec) + '</td><td>' + pct + '%</td></tr>';
-                }
-                document.getElementById('table').innerHTML = tb;
-                
-                // Activity
-                var act = '';
-                var recent = t.slice(-8).reverse();
-                for (var i = 0; i < recent.length; i++) {
-                    act += '<div class="activity-item"><div class="app">' + (recent[i].app || '-') + '</div>' +
-                        '<div class="time">' + (recent[i].window || '').substring(0, 30) + '</div>' +
-                        '<div class="dur">' + (recent[i].duration || '00:00') + '</div></div>';
-                }
-                document.getElementById('activity').innerHTML = act;
-            };
-            x.send();
-        }
-        
-        function init() {
-            var x = new XMLHttpRequest();
-            x.open('GET', '/api/info');
-            x.onload = function() {
-                var info = JSON.parse(this.responseText);
-                var db = info.sample_exists ? 'sample' : 'main';
-                document.getElementById('db').value = db;
-                var x2 = new XMLHttpRequest();
-                x2.open('GET', '/api/use/' + db);
-                x2.onload = function() {
-                    var d = JSON.parse(this.responseText);
-                    var sel = document.getElementById('date');
-                    sel.innerHTML = '';
-                    for (var i = 0; i < d.dates.length; i++) {
-                        sel.innerHTML += '<option value="' + d.dates[i] + '">' + d.dates[i] + '</option>';
-                    }
-                    if (d.dates.length) { cur = d.dates[0]; load(cur); }
-                };
-                x2.send();
-            };
-            x.send();
-        }
-        
-        document.getElementById('db').onchange = function() {
-            var x = new XMLHttpRequest();
-            x.open('GET', '/api/use/' + this.value);
-            x.onload = function() {
-                var d = JSON.parse(this.responseText);
-                var sel = document.getElementById('date');
-                sel.innerHTML = '';
-                for (var i = 0; i < d.dates.length; i++) {
-                    sel.innerHTML += '<option value="' + d.dates[i] + '">' + d.dates[i] + '</option>';
-                }
-                if (d.dates.length) { cur = d.dates[0]; load(cur); }
-            };
-            x.send();
-        };
-        document.getElementById('date').onchange = function() { cur = this.value; load(cur); };
-        
-        init();
-        setInterval(function() { if (cur) load(cur); }, 3000);
-    </script>
+    <script src="dashboard.js"></script>
 </body>
 </html>
