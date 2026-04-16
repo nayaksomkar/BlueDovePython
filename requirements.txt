@@ -1,0 +1,14 @@
+# Blue Dove - Requirements
+# Install with: pip install -r requirements.txt
+
+# Windows API for getting active window
+pywin32>=305
+
+# Data visualization
+matplotlib>=3.5.0
+
+# Standard library modules used:
+# - json (built-in)
+# - pathlib (built-in)
+# - datetime (built-in)
+# - tkinter (built-in with Python)

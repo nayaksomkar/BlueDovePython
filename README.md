@@ -1,46 +1,60 @@
-# Blue Dove
-Activity tracking and monitoring for PC digital wellbeing, by using python and MySQL.
+# Blue Dove - PC Activity Tracker
 
+Tracks which apps you use and for how long.
 
-\\     data structure used in blue_dove.py         
+**Windows only**
 
-                    tmp_dct = {
-                                "APP_NAME" : cr[se_last][0],
-                                "TASK_NAME" : cr[se_last][1],
-                                "TIME" : cr[la_last][2],
-                                "HOURS" : cr[la_last][3],
-                                "MINUTES" : cr[la_last][4],
-                                "SECONDS" : cr[la_last][5],
-                                "START_TIME" : cr[la_last][6],
-                                "END_TIME" : cr[la_last][7]
-                                                         }
+## Preview
 
-                                                                                                   </>
-   
+![Dashboard Preview 1](BDpreview1.png)
 
+![Dashboard Preview 2](BDpreview2.png)
 
-\\       Undefined Error       
+## Setup
 
-from win32gui import GetForegroundWindow, GetWindowText  #is working fine
+```bash
+python -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+```
 
-but mod.win32gui , triggers unable to found module error
+## Run
 
-<File "c:\Users\DELL\OneDrive\Desktop\TEST\blue_dove.py", line 3>
+```bash
+# Terminal 1: Start tracking
+python src/main.py
 
-                                                                                                    </>    
+# Terminal 2: Start dashboard
+python server.py
+```
 
+Open browser: http://localhost:8000
 
+## Sample Data
 
-\\ changes needed in sql_fun.py file 
+```bash
+python create_sample_db.py
+```
 
-In the sql_fun section in order to store data or do anykind of action with your mysql database,
-you have to change the password in the sql_fun section.
+## Files
 
-def_db = 'mysql' , a database which already exist.
-con = c.connect(host = 'localhost',user = 'root',passwd = '0000',database = def_db)
-As you can see in my section the password is '0000'.
+| File | Purpose |
+|------|---------|
+| `src/main.py` | Tracks active windows |
+| `server.py` | Dashboard server |
+| `src/data_manager.py` | SQLite storage |
+| `src/utils.py` | Helper functions |
+| `ui/index.html` | Dashboard UI |
+| `data/` | SQLite databases |
 
-The def_db (default database) it's created by mysql during installation of mysql,
-in order to store some required variables and all. 
+## Settings
 
-                                                                                                    </>
+Edit `config/settings.py`:
+- `WINDOW_CHECK_INTERVAL` - Seconds between checks (default: 1)
+- `KEEP_DAYS` - Days of data to keep (default: 10)
+
+## Requirements
+
+- Python 3.8+
+- Windows (uses win32gui)
+- pywin32

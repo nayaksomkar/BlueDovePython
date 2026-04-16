@@ -1,0 +1,28 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: Arial, sans-serif; padding: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; }
+
+h1 { margin-bottom: 20px; color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+
+.top { margin-bottom: 15px; background: rgba(255,255,255,0.95); padding: 15px; border-radius: 10px; display: flex; gap: 15px; align-items: center; }
+select { padding: 8px 12px; border: 2px solid #667eea; border-radius: 5px; background: #fff; font-size: 14px; }
+label { color: #333; display: flex; align-items: center; gap: 5px; }
+input { width: 18px; height: 18px; }
+
+.stats { display: flex; gap: 20px; margin-bottom: 20px; }
+.stats > div { background: rgba(255,255,255,0.95); padding: 20px 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.2); }
+.stats b { font-size: 1.3em; color: #ff6b6b; }
+
+.row { display: flex; gap: 20px; margin-bottom: 20px; }
+.box { flex: 1; background: rgba(255,255,255,0.95); padding: 20px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.2); }
+.box h2 { margin-bottom: 15px; font-size: 1.1rem; color: #333; }
+
+canvas { max-height: 220px; }
+
+table { width: 100%; border-collapse: collapse; }
+th { text-align: left; padding: 10px; color: #667eea; border-bottom: 2px solid #eee; }
+td { padding: 10px; border-bottom: 1px solid #eee; }
+tr:hover td { background: #f8f9fa; }
+
+.item { display: flex; justify-content: space-between; padding: 10px; background: #f8f9fa; border-radius: 8px; margin-bottom: 8px; }
+.item span:first-child { color: #667eea; font-weight: bold; }
+.item span:last-child { color: #2ecc71; }
